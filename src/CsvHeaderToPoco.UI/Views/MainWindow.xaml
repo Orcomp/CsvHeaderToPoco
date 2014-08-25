@@ -55,7 +55,7 @@
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Namespace" TextTrimming="CharacterEllipsis"/>
         <views:DirectoryPickerView Grid.Row="0" Grid.Column="1" LabelWidth="0" SelectedDirectory="{Binding Input, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
         <views:DirectoryPickerView Grid.Row="1" Grid.Column="1" LabelWidth="0" SelectedDirectory="{Binding Output, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" />
-        <TextBox Grid.Row="2" Grid.Column="1"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Namespace}"/>
         <Button Grid.Row="3" Grid.Column="1" Content="Create Files" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Command="{Binding CreateFiles}"/>
     </Grid>
 </catel:DataWindow>
