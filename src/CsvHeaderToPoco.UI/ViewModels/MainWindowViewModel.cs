@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using Catel.IO;
 using Catel.MVVM;
 
 namespace CsvHeaderToPoco.UI.ViewModels
@@ -11,7 +13,10 @@ namespace CsvHeaderToPoco.UI.ViewModels
         public MainWindowViewModel()
         {
             CreateFiles = new Command(OnCreateFiles);
+            this.Input = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            this.Output = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Output");
         }
+
 
         private string _input;
         public string Input
