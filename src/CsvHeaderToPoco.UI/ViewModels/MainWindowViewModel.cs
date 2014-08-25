@@ -40,7 +40,7 @@ namespace CsvHeaderToPoco.UI.ViewModels
         public Command CreateFiles { get; private set; }
         private void OnCreateFiles()
         {
-
+            System.Windows.MessageBox.Show("CreateFiles");
         }
     }
 }
