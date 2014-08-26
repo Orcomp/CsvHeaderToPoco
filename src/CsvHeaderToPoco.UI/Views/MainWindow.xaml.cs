@@ -9,6 +9,7 @@ namespace CsvHeaderToPoco.UI.Views
     public partial class MainWindow : DataWindow
     {
         public MainWindow()
+            :base(DataWindowMode.Custom)
         {
             InitializeComponent();
         }
