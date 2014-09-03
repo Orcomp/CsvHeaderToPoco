@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
+using Catel;
 using Catel.IO;
 using Catel.MVVM;
-using Orc.Csv;
+using CsvHeaderToPoco.UI.Services;
 
 namespace CsvHeaderToPoco.UI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(ICreateCSharpFilesService createCSharpFilesService)
         {
+            Argument.IsNotNull(() => createCSharpFilesService);
+            _createCSharpFilesService = createCSharpFilesService;
             CreateFiles = new Command(OnCreateFiles);
             this.Input = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             this.Output = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Output");
             this.Namespace = "Test.Entities";
         }
-
 
         private string _namespace;
         public string Namespace
@@ -45,6 +43,8 @@ namespace CsvHeaderToPoco.UI.ViewModels
         }
 
         private string _output;
+        private ICreateCSharpFilesService _createCSharpFilesService;
+
         public string Output
         {
             get { return _output; }
@@ -59,8 +59,7 @@ namespace CsvHeaderToPoco.UI.ViewModels
         public Command CreateFiles { get; private set; }
         private void OnCreateFiles()
         {
-            CodeGeneration.CreateCSharpFilesForAllCsvFiles(Input, Namespace, Output);
-            System.Windows.MessageBox.Show("Done");
+            _createCSharpFilesService.CreateCSharpFilesForAllCsvFiles(Input, Namespace, Output);
         }
     }
 }
